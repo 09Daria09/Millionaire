@@ -20,6 +20,7 @@ namespace Millionaire
         SoundPlayer playerBegin;
         SoundPlayer playerTrue;
         SoundPlayer playerFalse;
+        SoundPlayer playerCall;
 
         private Timer timer;
         private int count = 0;
@@ -32,10 +33,8 @@ namespace Millionaire
             playerFalse = new SoundPlayer("false.wav");
             playerTrue = new SoundPlayer("true.wav");
             playerBegin = new SoundPlayer("begin.wav");
+            playerCall = new SoundPlayer("zvonok.wav");
             playerBegin.Play();
-            // System.Threading.Thread.Sleep(7000); // остановка выполнения программы на 5 секунд
-
-
         }
         private void ReadFile()
         {
@@ -168,6 +167,10 @@ namespace Millionaire
             await BlinkButton(clickedButton, Color.Green);
 
             NumberQuestion++;
+            if(NumberQuestion == 16)
+            {
+                MessageBox.Show("Вы одержали победу!!! Ураааа");
+            }
             NumerSelected--;
             listBox1.SelectedIndex = NumerSelected;
             ReadFile();
@@ -238,37 +241,57 @@ namespace Millionaire
 
             Random random = new Random();
             int twoButt = 0;
-            while (twoButt < 3)
+            bool flag1 = true;
+            bool flag2 = true;
+            bool flag3 = true;
+            bool flag4 = true;
+            while (twoButt < 2)
             {
                 int numToDisable = random.Next(1, 4);
                 switch (numToDisable)
                 {
                     case 1:
-                        if(answerRight != button4.Text)
+                        if (answerRight != button4.Text)
                         {
                             button4.Enabled = false;
-                            twoButt++;
+                            if (flag1)
+                            {
+                                twoButt++;
+                                flag1 = false;
+                            }
                         }
                         break;
                     case 2:
                         if (answerRight != button5.Text)
                         {
                             button5.Enabled = false;
-                            twoButt++;
+                            if (flag2)
+                            {
+                                twoButt++;
+                                flag2 = false;
+                            }
                         }
                         break;
                     case 3:
                         if (answerRight != button9.Text)
                         {
                             button9.Enabled = false;
-                            twoButt++;
+                            if (flag3)
+                            {
+                                twoButt++;
+                                flag3 = false;
+                            }
                         }
                         break;
                     case 4:
                         if (answerRight != button10.Text)
                         {
                             button10.Enabled = false;
-                            twoButt++;
+                            if (flag4)
+                            {
+                                twoButt++;
+                                flag4 = false;
+                            }
                         }
                         break;
                 }
@@ -277,6 +300,53 @@ namespace Millionaire
             }
 
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            playerCall.Play();
+            button2.Enabled = false;
+            string answerRight = null;
+            string[] answers = null;
+            using (var reader = new StreamReader("Questions.csv"))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    string[] values = line.Split(',');
+                    if (values[0] == NumberQuestion.ToString())
+                    {
+                        answers = new string[] { values[3], values[4], values[5], values[6] };
+
+                        for (int i = 0; i < 4; i++)
+                        {
+                            char[] charArray = answers[i].ToCharArray();
+                            if (charArray[0] == '^')
+                            {
+                                answerRight = answers[i].Replace("\"", "").Replace("^", "");
+                            }
+                        }
+                    }
+                }
+            }
+            Random random = new Random();
+            int randomNumber = random.Next(1, 101);
+            if (randomNumber <= 80)
+            {
+                MessageBox.Show($"Оооо привет, да я слышал про это, думаю ответ - {answerRight}");
+            }
+            else
+            {
+
+                MessageBox.Show($"Оооо привет, ой я даже не знаю, возможно ответ - {answers[0]}");
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            button3.Enabled = false;
+            ProgressBarAnswer answer = new ProgressBarAnswer(NumberQuestion);
+            answer.ShowDialog();
         }
     }
 }
