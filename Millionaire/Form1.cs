@@ -8,8 +8,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Forms;
+using System.Windows.Media;
 using Microsoft.VisualBasic.FileIO;
+using Label = System.Windows.Controls.Label;
+using ListBox = System.Windows.Forms.ListBox;
 
 namespace Millionaire
 {
@@ -21,7 +25,6 @@ namespace Millionaire
         public Form1()
         {
             InitializeComponent();
-
             LoadQuestions();
         }
 
@@ -64,12 +67,17 @@ namespace Millionaire
 
                     questions.Add(question);
                     prices.Add(price);
-
-                    listBox1.Items.Add($"{questionNumber} - {questionPrice} грн");
+                    if (questionNumber % 5 == 0)
+                    {
+                        listBox1.Items.Add($"{questionNumber} -> {questionPrice} ₴  👑");
+                    }
+                    else
+                    {
+                        listBox1.Items.Add($"{questionNumber} -> {questionPrice} ₴");
+                    }
                 }
             }
         }
-
         public class Question
         {
             public int Number { get; set; }
