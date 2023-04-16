@@ -21,6 +21,7 @@ namespace Millionaire
         SoundPlayer playerTrue;
         SoundPlayer playerFalse;
         SoundPlayer playerCall;
+        SoundPlayer playerWin;
 
         private Timer timer;
         private int count = 0;
@@ -34,6 +35,7 @@ namespace Millionaire
             playerTrue = new SoundPlayer("true.wav");
             playerBegin = new SoundPlayer("begin.wav");
             playerCall = new SoundPlayer("zvonok.wav");
+            playerWin = new SoundPlayer("win.wav");
             playerBegin.Play();
         }
         private void ReadFile()
@@ -167,8 +169,9 @@ namespace Millionaire
             await BlinkButton(clickedButton, Color.Green);
 
             NumberQuestion++;
-            if(NumberQuestion == 16)
+            if(NumerSelected == 0)
             {
+                playerWin.Play();
                 MessageBox.Show("Вы одержали победу!!! Ураааа");
             }
             NumerSelected--;
