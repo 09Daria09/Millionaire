@@ -173,9 +173,39 @@ namespace Millionaire.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap photo_5323284811894345420_m {
+            get {
+                object obj = ResourceManager.GetObject("photo_5323284811894345420_m", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap png_transparent_computer_icons_door_symbol_building_door_angle_furniture_text {
             get {
                 object obj = ResourceManager.GetObject("png-transparent-computer-icons-door-symbol-building-door-angle-furniture-text", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap thumb_254 {
+            get {
+                object obj = ResourceManager.GetObject("thumb_254", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap thumb_254__1_ {
+            get {
+                object obj = ResourceManager.GetObject("thumb_254 (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

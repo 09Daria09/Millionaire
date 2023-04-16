@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Media;
 using System.Threading.Tasks;
-//using System.Threading;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.FileIO;
 namespace Millionaire
@@ -15,7 +14,7 @@ namespace Millionaire
         private List<Question> questions = new List<Question>();
         private List<Price> prices = new List<Price>();
         int NumberQuestion = 1;
-        int NumerSelected = 14;
+        int NumerSelected;
 
         SoundPlayer playerBegin;
         SoundPlayer playerTrue;
@@ -23,20 +22,38 @@ namespace Millionaire
         SoundPlayer playerCall;
         SoundPlayer playerWin;
 
-        private Timer timer;
-        private int count = 0;
+        bool SaundMult = true;
+        int countBegin = 0;
         public Form1()
         {
             InitializeComponent();
             LoadQuestions();
             ReadFile();
-            listBox1.SelectedIndex = 14;
+            NumerSelected = listBox1.Items.Count - 1;
+            listBox1.SelectedIndex = NumerSelected; 
             playerFalse = new SoundPlayer("false.wav");
             playerTrue = new SoundPlayer("true.wav");
             playerBegin = new SoundPlayer("begin.wav");
             playerCall = new SoundPlayer("zvonok.wav");
             playerWin = new SoundPlayer("win.wav");
-            playerBegin.Play();
+            ToggleSound();
+
+
+        }
+        private void ToggleSound()
+        {
+            if (countBegin == 0)
+            {
+                if (SaundMult)
+                {
+                    playerBegin.Play();
+                }
+                else
+                {
+                    playerBegin.Stop();
+                }
+                countBegin++;
+            }
         }
         private void ReadFile()
         {
@@ -128,7 +145,9 @@ namespace Millionaire
             button5.Enabled = true;
             button9.Enabled = true;
             button10.Enabled = true;
-            playerBegin.Stop();
+
+            if (SaundMult)
+                playerBegin.Stop();
             Button clickedButton = (Button)sender;
             string answerRight = null;
             using (var reader = new StreamReader("Questions.csv"))
@@ -155,7 +174,9 @@ namespace Millionaire
 
             if (answerRight != clickedButton.Text)
             {
-                playerFalse.Play();
+                if (SaundMult)
+                    playerFalse.Play();
+
                 await BlinkButton(clickedButton, Color.Red);
                 MessageBox.Show("Вы проиграли, но не расстраивайтесь. (╯︵╰,)\n" +
                     "Продолжайте играть и тренироваться, и вы обязательно достигнете успеха!");
@@ -163,15 +184,17 @@ namespace Millionaire
             }
             else
             {
-                playerTrue.Play();
+                if (SaundMult)
+                    playerTrue.Play();
             }
 
             await BlinkButton(clickedButton, Color.Green);
 
             NumberQuestion++;
-            if(NumerSelected == 0)
+            if (NumerSelected == 0)
             {
-                playerWin.Play();
+                if (SaundMult)
+                    playerWin.Play();
                 MessageBox.Show("Вы одержали победу!!! Ураааа");
             }
             NumerSelected--;
@@ -307,7 +330,8 @@ namespace Millionaire
 
         private void button2_Click(object sender, EventArgs e)
         {
-            playerCall.Play();
+            if (SaundMult)
+                playerCall.Play();
             button2.Enabled = false;
             string answerRight = null;
             string[] answers = null;
@@ -351,5 +375,33 @@ namespace Millionaire
             ProgressBarAnswer answer = new ProgressBarAnswer(NumberQuestion);
             answer.ShowDialog();
         }
+
+        private void администраторскийРежимToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string expectedPassword = "admin";
+            string password = Microsoft.VisualBasic.Interaction.InputBox("Введите пароль:", "Пароль", "", -1, -1);
+            if (password != expectedPassword)
+            {
+                MessageBox.Show("Пароль неверный!");
+                return;
+            }
+            AdminMenu menu = new AdminMenu();
+            menu.ShowDialog();
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            SaundMult = !SaundMult;
+            if (SaundMult)
+            {
+                button11.Image = Image.FromFile("on.bmp");
+            }
+            else
+            {
+                button11.Image = Image.FromFile("off.bmp");
+            }
+            ToggleSound();
+        }
+
     }
 }

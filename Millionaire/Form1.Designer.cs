@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -44,6 +45,8 @@
             this.играToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.администраторскийРежимToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button11 = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -217,6 +220,7 @@
             this.администраторскийРежимToolStripMenuItem.Name = "администраторскийРежимToolStripMenuItem";
             this.администраторскийРежимToolStripMenuItem.Size = new System.Drawing.Size(217, 24);
             this.администраторскийРежимToolStripMenuItem.Text = "Администраторский режим";
+            this.администраторскийРежимToolStripMenuItem.Click += new System.EventHandler(this.администраторскийРежимToolStripMenuItem_Click);
             // 
             // оПрограммеToolStripMenuItem
             // 
@@ -225,12 +229,23 @@
             this.оПрограммеToolStripMenuItem.Text = "О программе";
             this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
             // 
+            // button11
+            // 
+            this.button11.Image = global::Millionaire.Properties.Resources.photo_5323284811894345420_m;
+            this.button11.Location = new System.Drawing.Point(12, 89);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(90, 47);
+            this.button11.TabIndex = 15;
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackgroundImage = global::Millionaire.Properties.Resources.my__1_;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1270, 786);
+            this.Controls.Add(this.button11);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button5);
@@ -272,6 +287,8 @@
         private System.Windows.Forms.ToolStripMenuItem играToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem администраторскийРежимToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

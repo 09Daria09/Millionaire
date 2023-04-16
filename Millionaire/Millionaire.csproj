@@ -50,6 +50,24 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add.Designer.cs">
+      <DependentUpon>Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminMenu.Designer.cs">
+      <DependentUpon>AdminMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edit.Designer.cs">
+      <DependentUpon>Edit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +82,15 @@
       <DependentUpon>ProgressBarAnswer.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Add.resx">
+      <DependentUpon>Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminMenu.resx">
+      <DependentUpon>AdminMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edit.resx">
+      <DependentUpon>Edit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,6 +173,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Снимок экрана 2023-04-14 224904 _1_.bmp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\thumb_254.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\thumb_254 %281%29.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\photo_5323284811894345420_m.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
