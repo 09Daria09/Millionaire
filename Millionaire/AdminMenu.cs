@@ -33,5 +33,11 @@ namespace Millionaire
             Add add = new Add();
             add.ShowDialog();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Remove remove = new Remove();
+            remove.ShowDialog();
+        }
     }
 }
